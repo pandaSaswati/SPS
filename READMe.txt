@@ -35,3 +35,5 @@ Run the application using jar
 ------------------------------
 mvn clean install
 java -jar demo-0.0.1-SNAPSHOT.jar com.rewaa.ims.IMSApplication
+
+Please find the attached file IMS.postman_collection.json for sending the request and response using postman
