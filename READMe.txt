@@ -1,6 +1,6 @@
-DB
-------------------------------
-CREATE SCHEMA ims;//if u want change the schema name then url also need to change in application.properties
+Please create DB schema and tables before the project run
+-----------------------------------------------------------
+CREATE SCHEMA ims;//if you want change the schema name then url also you have to change in application.properties
 
 CREATE TABLE `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -27,11 +27,11 @@ db.username=root
 db.password=root
 db.driver=com.mysql.cj.jdbc.Driver
 
-Run from mvn
-----------------
+Run the application using maven command
+----------------------------------------
 mvn spring-boot:run
 
-Run from jar
------------------
+Run the application using jar
+------------------------------
 mvn clean install
 java -jar demo-0.0.1-SNAPSHOT.jar com.rewaa.ims.IMSApplication
