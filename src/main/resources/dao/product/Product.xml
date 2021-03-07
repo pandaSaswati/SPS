@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Product">
+	<resultMap type="com.rewaa.ims.dto.ProductDTO" id="result"></resultMap>
+	<parameterMap type="com.rewaa.ims.dto.ProductDTO" id="param"></parameterMap>
+	<select id="getAll" resultMap="result">
+		SELECT * FROM product
+	</select>
+	
+	<select id="getProductById" resultMap="result" parameterType="int">
+		SELECT * FROM product WHERE id = #{id}
+	</select>
+	
+	<insert id="insert" parameterMap="param"  useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO product(name, description, price, vendor)
+		VALUES(#{name}, #{description}, #{price}, #{vendor})
+	</insert>
+	
+	<update id="update" parameterMap="param">
+		UPDATE product SET name = #{name}, description = #{description}, price = #{price}, vendor = #{vendor}
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM product WHERE id = #{id}
+	</delete>
+	
+	<select id="getCountByName" resultType="int" parameterMap="param">
+		SELECT COUNT(*)  FROM product WHERE id != #{id} AND name = #{name}
+	</select>
+</mapper>

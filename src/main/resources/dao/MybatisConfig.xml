@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+	<!-- Always ensure to use the correct XML header as above! -->
+
+<configuration>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="driver.useUnicode" value="YES"/>
+				<property name="driver.characterEncoding" value="UTF8"/>
+				<property name="username" value="${user}" />
+				<property name="password" value="${password}" />
+				<property name="poolMaximumActiveConnections" value="${maxActive}" />
+				<property name="poolMaximumIdleConnections" value="${maxIdle}" />
+				<property name="poolTimeToWait" value="${maxWaitTimeInMills}" />
+				<property name="poolPingQuery" value="SELECT 1" />
+				<property name="poolPingEnabled" value="true" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<!-- Application -->
+		<mapper resource="dao/user/User.xml"/>	
+		<mapper resource="dao/product/Product.xml"/>	
+	</mappers>
+</configuration>
