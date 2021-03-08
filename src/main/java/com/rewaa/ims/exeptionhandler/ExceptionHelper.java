@@ -26,7 +26,7 @@ public class ExceptionHelper
 	public ResponseEntity<Object> handleInvalidInputException(InvalidInputException ex)
 	{
 
-		LOGGER.error("Invalid Input Exception: ", ex);
+		LOGGER.error("Invalid Input Exception: {}", ex.getMessage());
 		return new ResponseEntity<Object>(getErrorCode(ex.getMessage(), HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST);
 
 	}
@@ -39,7 +39,7 @@ public class ExceptionHelper
 	public ResponseEntity<Object> handleUnauthorizedException(Unauthorized ex)
 	{
 
-		LOGGER.error("Unauthorized Exception: ", ex);
+		LOGGER.error("Unauthorized Exception: {}", ex.getMessage());
 		return new ResponseEntity<Object>(getErrorCode(ex.getMessage(), HttpStatus.UNAUTHORIZED), HttpStatus.UNAUTHORIZED);
 
 	}
@@ -52,7 +52,7 @@ public class ExceptionHelper
 	public ResponseEntity<Object> handleUnauthorizedException(UnAuthorizedException ex)
 	{
 
-		LOGGER.error("Unauthorized Exception: ", ex);
+		LOGGER.error("Unauthorized Exception: {}", ex.getMessage());
 		return new ResponseEntity<Object>(getErrorCode(ex.getMessage(), HttpStatus.UNAUTHORIZED), HttpStatus.UNAUTHORIZED);
 
 	}
@@ -65,7 +65,7 @@ public class ExceptionHelper
 	public ResponseEntity<Object> handleNullException(NullPointerException ex)
 	{
 
-		LOGGER.error("NullPointerException: ", ex);
+		LOGGER.error("NullPointerException: {}", ex.getMessage());
 		return new ResponseEntity<Object>(getErrorCode("Null pointer exception in server", HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
@@ -78,23 +78,23 @@ public class ExceptionHelper
 	public ResponseEntity<Object> handleDataAccessException(DataAccessException ex)
 	{
 
-		LOGGER.error("DataAccessException: ", ex);
+		LOGGER.error("DataAccessException: {}", ex.getMessage());
 		return new ResponseEntity<Object>(getErrorCode(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
-	
+
 	@ExceptionHandler(value =
-		{
-			HttpMessageNotReadableException.class
-		})
+	{
+		HttpMessageNotReadableException.class
+	})
 
-		public ResponseEntity<Object> handleDataAccessException(HttpMessageNotReadableException ex)
-		{
+	public ResponseEntity<Object> handleDataAccessException(HttpMessageNotReadableException ex)
+	{
 
-			LOGGER.error("HttpMessageNotReadableException: ", ex);
-			return new ResponseEntity<Object>(getErrorCode("Body message not able to read...", HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+		LOGGER.error("HttpMessageNotReadableException: {}", ex.getMessage());
+		return new ResponseEntity<Object>(getErrorCode("Body message not able to read...", HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST);
 
-		}
+	}
 
 	@ExceptionHandler(value =
 	{
@@ -104,7 +104,7 @@ public class ExceptionHelper
 	public ResponseEntity<Object> handleSQLException(SQLException ex)
 	{
 
-		LOGGER.error("SQL Exception: ", ex);
+		LOGGER.error("SQL Exception: {}", ex.getMessage());
 		return new ResponseEntity<Object>(getErrorCode(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
@@ -129,4 +129,5 @@ public class ExceptionHelper
 		commonResponse.setInternalErrorMessage(internalErrorMessage);
 		return commonResponse;
 	}
+	
 }
